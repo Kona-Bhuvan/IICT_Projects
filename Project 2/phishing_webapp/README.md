@@ -48,7 +48,7 @@ Ensure the exported `model_artifacts/` folder is placed directly inside the `phi
 
 ### Step 3: Install Dependencies
 
-Navigate into `phishing_webapp/` and install the required packages:
+Navigate into `phishing_webapp/` and install the required packages by executing the given commands in terminal:
 
 ```bash
 pip install -r requirements.txt
@@ -60,7 +60,7 @@ python -m spacy download en_core_web_sm
 
 ### Step 4: Run the Application
 
-Start the Flask local development server:
+Start the Flask local development server by running the given command in terminal:
 
 ```bash
 python app.py
