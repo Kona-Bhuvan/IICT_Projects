@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
+
+:root {
+  --paper: #ECE8DE;
+  --paper-dark: #DED7C6;
+  --ink: #211E1A;
+  --ink-soft: #55504A;
+  --rule: #B9AF9C;
+  --red-stamp: #A8362B;
+  --green-stamp: #33654A;
+  --navy: #2C4356;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 48px 20px;
+  background: var(--paper-dark);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(0,0,0,0.03), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(0,0,0,0.03), transparent 40%);
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+}
+
+.folder {
+  width: 100%;
+  max-width: 640px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 12px 30px rgba(33, 30, 26, 0.18);
+  position: relative;
+  padding: 40px 36px 28px;
+}
+
+.folder::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 14px,
+    transparent 14px 28px
+  );
+  opacity: 0.15;
+}
+
+.folder-header .tab {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  padding: 3px 8px;
+  margin-bottom: 18px;
+}
+
+.folder-header h1 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+}
+
+.model-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  background: var(--paper-dark);
+  padding: 2px 6px;
+  border: 1px solid var(--rule);
+}
+
+.case-form .field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 8px 2px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: 7px;
+}
+
+.submit-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--navy);
+  color: var(--paper);
+  border: none;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.submit-btn:hover { background: #23384a; }
+.submit-btn:active { transform: translateY(1px); }
+.submit-btn:focus-visible { outline: 2px solid var(--red-stamp); outline-offset: 2px; }
+
+.verdict-area {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px dashed var(--rule);
+  position: relative;
+}
+
+.stamp {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  padding: 10px 18px;
+  border: 4px double currentColor;
+  transform: rotate(-4deg);
+  margin-bottom: 22px;
+}
+
+.stamp-phish { color: var(--red-stamp); }
+.stamp-legit { color: var(--green-stamp); }
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.report-table th,
+.report-table td {
+  text-align: left;
+  padding: 7px 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.report-table th {
+  font-weight: 600;
+  color: var(--ink-soft);
+  width: 55%;
+}
+
+.report-table td {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+}
+
+.report-table th.divider {
+  padding-top: 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+  width: auto;
+}
+
+.folder-footer {
+  margin-top: 32px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-family: 'Space Mono', monospace;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .folder { padding: 28px 20px 20px; }
+  .folder-header h1 { font-size: 21px; }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phishing Email Detection System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="folder">
+    <header class="folder-header">
+      <div class="tab">IICT Project</div>
+      <h1>Phishing Email Detection System</h1>
+      <h2>AI-Powered Email Security Analysis</h2>
+      <h6>Analyze emails to identify potential phishing attempts using advanced Natural Language Processing (NLP) and Machine Learning.</h6>
+      <p class="subtitle">Submit a message below for classification &mdash; model on file: <span class="model-tag">{{ model_name }}</span></p>
+    </header>
+
+    <form method="POST" class="case-form">
+      <div class="field">
+        <label for="subject">Email Subject</label>
+        <input type="text" id="subject" name="subject" value="{{ subject }}" placeholder="Enter the email subject here" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="body">Email Content</label>
+        <textarea id="body" name="body" rows="9" placeholder="Paste the full email body here">{{ body }}</textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">🔍 Analyze Message</button>
+    </form>
+
+    {% if result %}
+    <section class="verdict-area">
+      <div class="stamp {{ 'stamp-phish' if result.prediction == 1 else 'stamp-legit' }}">
+        {{ result.label }}
+      </div>
+
+      <div class="report">
+        <table class="report-table">
+          <tbody>
+            {% if result.confidence is not none %}
+            <tr>
+              <th>Confidence</th>
+              <td>{{ result.confidence }}%</td>
+            </tr>
+            <tr>
+              <th>Phishing probability</th>
+              <td>{{ result.phishing_prob }}%</td>
+            </tr>
+            <tr>
+              <th>Legitimate probability</th>
+              <td>{{ result.legit_prob }}%</td>
+            </tr>
+            {% endif %}
+            <tr><th colspan="2" class="divider">Detected signals</th></tr>
+            <tr>
+              <th>URLs found</th>
+              <td>{{ result.url_count }}</td>
+            </tr>
+            <tr>
+              <th>Urgency keywords</th>
+              <td>{{ "Yes" if result.urgency_flag else "No" }}</td>
+            </tr>
+            <tr>
+              <th>Exclamation marks</th>
+              <td>{{ result.exclamation_count }}</td>
+            </tr>
+            <tr>
+              <th>Uppercase ratio</th>
+              <td>{{ result.uppercase_ratio }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {% endif %}
+
+    <footer class="folder-footer">
+      <span>This analysis is generated automatically using an AI-based phishing detection model and should be used as a decision-support tool rather than a definitive security assessment.</span>
+    </footer>
+  </div>
+
+</body>
+</html>
